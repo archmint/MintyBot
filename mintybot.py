@@ -113,7 +113,6 @@ class Bot():
                 else:
                     b = not onNewline(line) # returns status (False means quit)
         return True
-        in(spline[1:3]) == 'MODE {}'.format(self.nick)
     ## END> def mainLoop(self)
 
     def onNewline(self, line):
