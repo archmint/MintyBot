@@ -7,6 +7,16 @@ from socket import socket, AF_INET as inet, SOCK_STREAM as stream
 from ssl import wrap_socket
 from time import sleep
 
+def main():
+    bot = Bot(chans=["##nadircave"])
+    connected = bot.connect()
+    if connected:
+        print("\x1b[32;1mConnected\x1b[0m")
+    else:
+        print("\x1b[31;1mNot Connected\x1b[0m")
+    bot.mainLoop()
+
+
 class Bot():
 
     def connect(self):
@@ -93,7 +103,6 @@ class Bot():
 
                 the main loop where the bot responds to pings and updates calls onNewline()
         """
-
         rb = "" # read buffer
         b = False # break condition
         while True:
@@ -111,7 +120,7 @@ class Bot():
                 elif spline[0] == 'ERROR':
                     return False
                 else:
-                    b = not onNewline(line) # returns status (False means quit)
+                    b = not self.onNewline(line) # returns status (False means quit)
         return True
     ## END> def mainLoop(self)
 
@@ -170,11 +179,5 @@ class Bot():
 
 
 if __name__ == "__main__":
-    bot = Bot(chans=["##und3rw0rld"])
-    connected = bot.connect()
-    if connected:
-        print("\x1b[32;1mConnected\x1b[0m")
-    else:
-        print("\x1b[31;1mNot Connected\x1b[0m")
-    bot.mainLoop()
+    main()
 
